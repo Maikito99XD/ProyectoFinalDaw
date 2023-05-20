@@ -18,5 +18,5 @@
     }catch(Exception $ex){
         print $ex->getMessage();
     }
-    include("../../views/actualizarProducto.view.php");
+    include("../../views/deleteProducto.view.php");
 ?>

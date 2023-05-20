@@ -1,15 +1,3 @@
-<?php
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        if(isset($_POST["actualizarProducto"])){
-            $_SESSION['productoActualizar'] = $_POST["idProducto"];
-            header('Location:actualizarProducto.php');
-            exit;
-        }else if(isset($_POST["deleteProducto"])){
-            header("Location:deleteProducto.php");
-            exit;
-        }
-    }
-?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -81,38 +69,44 @@
                     <form id="formAdmin" action="../../utils/classes/panelAdministrador.php" method="post">
                         <table style="border: 1px solid">
                             <tr id="panelAdminTrBorder">
-                                <td>ID</td>
-                                <td>Imagen</td>
-                                <td>Nombre</td>
-                                <td>Precio</td>
-                                <td>Puntuacion</td>
-                                <td>Categoría</td>
+                                <td class="center-input">ID</td>
+                                <td class="center-input">Imagen</td>
+                                <td class="center-input">Nombre</td>
+                                <td class="center-input">Precio</td>
+                                <td class="center-input">Puntuacion</td>
+                                <td class="center-input">Categoría</td>
                             </tr>
-                            <?php 
-                            foreach($productos as $producto) : ?>
-                                <tr>
-                                    <td><input type="text" id="idProducto" name="idProducto" value="<?=$producto['id']?>" class="center-input" readonly></td>
-                                    <td><img style="width: 100% !important" src="data:image/jpg;base64,<?= base64_encode($producto['img']);?>" /></td> 
-                                    <td><?=$producto['nombre']?></td>
-                                    <td><?=$producto['puntuacion']?></td>
-                                    <td><?=$producto['precio']?>€</td>
-                                    <td><?=$producto['categoria']?></td>
-                                    <td><input type="submit" id="actualizarProducto" name="actualizarProducto" value="Actualizar"/></td>
-                                    <td><input type="submit" id="deleteProducto" name="deleteProducto" value="Eliminar"/></td>
-                                </tr>
-                            <?php endforeach; ?>
-                            <!-- <script>
-                                    function setFormAction(button){
-                                        document.getElementById('formAdmin').action = button.formAction;
-                                    }
+                            <?php foreach($productos as $producto) : ?>
+                            <tr>
+                                <td><input type="text" id="idProducto<?=$producto['id']?>" name="idProducto" value="<?=$producto['id']?>" class="center-input" readonly></td>
+                                <td><img style="width: 100% !important" src="data:image/jpg;base64,<?= base64_encode($producto['img']);?>" /></td> 
+                                <td class="center-input"><?=$producto['nombre']?></td>
+                                <td class="center-input"><?=$producto['puntuacion']?></td>
+                                <td class="center-input"><?=$producto['precio']?>€</td>
+                                <td class="center-input"><?=$producto['categoria']?></td>
+                                <td>
+                                    <form method="post" action="../../utils/classes/actualizarProducto.php">
+                                        <input type="hidden" name="idProducto" value="<?=$producto['id']?>">
+                                        <input type="submit" name="actualizarProducto" value="Actualizar">
+                                    </form>
+                                </td>
+                                <td>
+                                    <form method="post" action="../../utils/classes/deleteProducto.php">
+                                        <input type="hidden" name="idProducto" value="<?=$producto['id']?>">
+                                        <input type="submit" name="deleteProducto" value="Eliminar">
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
 
-                                    var buttons = document.querySelectorAll('input[type="image"]');
-                                    for(var i = 0;i< buttons.lenght; i++){
-                                        buttons[i].addEventListener('click', function(){
-                                            setFormAction(this);
-                                        })
-                                    }
-                                </script>  -->
+                        <script>
+                            var buttons = document.querySelectorAll('input[type="submit"]');
+                            for (var i = 0; i < buttons.length; i++) {
+                                buttons[i].addEventListener('click', function() {
+                                    var idProducto = this.parentNode.querySelector('input[name="idProducto"]').value;
+                                });
+                            }
+                        </script>
                         </table>
                     </form>
                 </div>
