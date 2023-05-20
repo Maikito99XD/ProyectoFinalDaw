@@ -11289,3 +11289,7 @@ textarea.form-control-lg {
 #panelAdminTrBorder{
   border: solid;
 }
+
+.center-input{
+  text-align: center;
+}

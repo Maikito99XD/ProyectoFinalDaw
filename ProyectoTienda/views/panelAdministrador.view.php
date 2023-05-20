@@ -1,3 +1,15 @@
+<?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if(isset($_POST["actualizarProducto"])){
+            $_SESSION['productoActualizar'] = $_POST["idProducto"];
+            header('Location:actualizarProducto.php');
+            exit;
+        }else if(isset($_POST["deleteProducto"])){
+            header("Location:deleteProducto.php");
+            exit;
+        }
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -65,30 +77,44 @@
         <!-- Section-->
         <section class="py-5">
             <div class="container px-4 px-lg-5 mt-5">
-                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center"> 
-                    <table border="1">
-                        <tr id="panelAdminTrBorder">
-                            <td>ID</td>
-                            <td>Imagen</td>
-                            <td>Nombre</td>
-                            <td>Precio</td>
-                            <td>Puntuacion</td>
-                            <td>Categoría</td>
-                        </tr>
-                        <?php 
-                        foreach($productos as $producto) : ?>
-                            <tr>
-                                <td><?=$producto['id']?></td>
-                                <td><img src="data:image/jpg;base64,<?= base64_encode($producto['img']);?>" /></td>
-                                <td><?=$producto['nombre']?></td>
-                                <td><?=$producto['puntuacion']?></td>
-                                <td><?=$producto['precio']?>€</td>
-                                <td><?=$producto['categoria']?></td>
-                                <td><button type="button"> <img src="../../assets/actualizarIcono.png" height ="15" width="15" /></button></td>
-                                <td><button type="button"> <img src="../../assets/papeleraIcono.png" height ="15" width="15" /></button></td>
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                    <form id="formAdmin" action="../../utils/classes/panelAdministrador.php" method="post">
+                        <table style="border: 1px solid">
+                            <tr id="panelAdminTrBorder">
+                                <td>ID</td>
+                                <td>Imagen</td>
+                                <td>Nombre</td>
+                                <td>Precio</td>
+                                <td>Puntuacion</td>
+                                <td>Categoría</td>
                             </tr>
-                        <?php endforeach; ?>
-                    </table>
+                            <?php 
+                            foreach($productos as $producto) : ?>
+                                <tr>
+                                    <td><input type="text" id="idProducto" name="idProducto" value="<?=$producto['id']?>" class="center-input" readonly></td>
+                                    <td><img style="width: 100% !important" src="data:image/jpg;base64,<?= base64_encode($producto['img']);?>" /></td> 
+                                    <td><?=$producto['nombre']?></td>
+                                    <td><?=$producto['puntuacion']?></td>
+                                    <td><?=$producto['precio']?>€</td>
+                                    <td><?=$producto['categoria']?></td>
+                                    <td><input type="submit" id="actualizarProducto" name="actualizarProducto" value="Actualizar"/></td>
+                                    <td><input type="submit" id="deleteProducto" name="deleteProducto" value="Eliminar"/></td>
+                                </tr>
+                            <?php endforeach; ?>
+                            <!-- <script>
+                                    function setFormAction(button){
+                                        document.getElementById('formAdmin').action = button.formAction;
+                                    }
+
+                                    var buttons = document.querySelectorAll('input[type="image"]');
+                                    for(var i = 0;i< buttons.lenght; i++){
+                                        buttons[i].addEventListener('click', function(){
+                                            setFormAction(this);
+                                        })
+                                    }
+                                </script>  -->
+                        </table>
+                    </form>
                 </div>
             </div>
         </section>
