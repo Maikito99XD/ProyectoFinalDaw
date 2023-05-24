@@ -48,7 +48,8 @@
                 {
                     $nombre = $_POST['nombreProducto'];
                     $precio = $_POST['precioProducto'];
-                    $puntuacion = $_POST['puntuacionProducto'];
+                    $puntuacion = 5;
+                    $descripcion = $_POST['descripcionProducto'];
                     $categoria = $_POST['categoriaProducto'];
                     $image = $_FILES['imagen']['tmp_name'];
                     $imagen = addslashes(file_get_contents($image));
@@ -71,7 +72,7 @@
                     }
                     */
 
-                    $insert = $connection->query("iNSERT INTO productos(nombre,precio,puntuacion,categoria,img) VALUES('$nombre','$precio','$puntuacion','$categoria','$imagen')");
+                    $insert = $connection->query("iNSERT INTO productos(nombre,precio,puntuacion,categoria,img,descripcion) VALUES('$nombre','$precio','$puntuacion','$categoria','$imagen','$descripcion')");
 
                     if($insert){
                         $mensaje = "No se ha podido acceder a la BBDD";

@@ -245,7 +245,7 @@ footer {
     <i class="fa fa-user"></i>
     <input type="number" step="0.01" name="precioProducto" placeholder="Precio" required /><br><br>
     <i class="fa fa-user"></i>
-    <input type="number" name="puntuacionProducto" placeholder="Puntuación" required /><br><br>
+    <input type="text" name="descripcionProducto" placeholder="Descripcion" /><br><br>
     <i class="fa fa-user"></i>
     <input type="text"  name="categoriaProducto" placeholder="Categoría" required /><br><br>
     <i class="fa fa-user"></i>

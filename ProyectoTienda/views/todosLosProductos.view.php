@@ -90,6 +90,7 @@
                                     </div>
                                     <!-- Product price-->
                                     <?=$producto['precio']?>€
+            
                                 </div>
                             </div>
                             <!-- Product actions-->
