@@ -5,3 +5,15 @@
 */
 // This file is intentionally blank
 // Use this file to add JavaScript to your project
+
+function detalleProducto(id) {
+    
+    window.location.href = "../../utils/classes/producto.php?id=" + id;
+}
+
+// window.post = function(url, data) {
+//     console.log("hola");
+//     return fetch("../../utils/classes/producto.php", {method: "POST", headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)});
+// }
+  
+  
