@@ -21,7 +21,7 @@ try{
                     $mensaje = "No se ha podido acceder a la BBDD";
                 }else{
                     $productos = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
-                    header("Location:../../utils/login.php");
+                    header("Location:../../utils/classes/login.php");
                 }
             }else{
                echo '<script language="javascript">alert("Debes introducir un nombre de usuario con al menos 3 carácteres!");</script>';

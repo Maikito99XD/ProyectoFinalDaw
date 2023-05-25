@@ -1,7 +1,3 @@
-<?php
-    $producto = $_SESSION['camposProducto'];
-
-?>
 <html>
 <head>
     <style>
@@ -245,17 +241,18 @@ footer {
 <div class="wrapper">
   <form class="login" action="<?=$_SERVER['PHP_SELF']?>" method="POST" enctype="multipart/form-data">
     <p class="title">Actualizar un producto</p>
-    <input type="text" name="nombreProducto" placeholder="Nombre" autofocus required value="<?= $producto['nombre']; ?>"/><br><br>
+    <input type="hidden" name="idProductoUpdate" value="<?=$actualizarProducto['id']?>">
+    <input type="text" name="nombreProducto" placeholder="Nombre" autofocus required value="<?= $actualizarProducto['nombre']; ?>"/><br><br>
     <i class="fa fa-user"></i>
-    <input type="number" step="0.01" name="precioProducto" placeholder="Precio" required value="<?= $producto['precio']; ?>" /><br><br>
+    <input type="number" step="0.01" name="precioProducto" placeholder="Precio" required value="<?= $actualizarProducto['precio']; ?>" /><br><br>
     <i class="fa fa-user"></i>
-    <input type="number" name="puntuacionProducto" placeholder="Puntuación" required value="<?= $producto['puntuacion']; ?>"/><br><br>
+    <input type="text"  name="categoriaProducto" placeholder="Categoría" required value="<?= $actualizarProducto['categoria']; ?>" /><br><br>
     <i class="fa fa-user"></i>
-    <input type="text"  name="categoriaProducto" placeholder="Categoría" required value="<?= $producto['categoria']; ?>" /><br><br>
+    <input type="text"  name="descripcionProducto" placeholder="Descripción" value="<?= $actualizarProducto['descripcion']; ?>" /><br><br>
     <i class="fa fa-user"></i>
     <input type="file" name="imagen"><br>
     <i class="fa fa-key"></i><br>
-    <button name="actualizarProducto" type="submit" >
+    <button name="updateProducto" type="submit" >
       <i class="spinner"></i>
       <span class="state">Actualizar producto</span>
     </button>

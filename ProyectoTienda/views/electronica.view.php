@@ -66,11 +66,18 @@
         </header>
         <!-- Section-->
         <section class="py-5">
+            <form action="../../utils/classes/electronica.php" method="POST" style="text-align: center;">
+                <label><h4 class="fw-bolder mb-4">Ordenar por: </h4></label>
+                <input type="submit" name="mayorMenor" value="Precio de mayor a menor" />
+                <input type="submit" name="menorMayor" value="Precio de menor a mayor" />
+                <input type="submit" name="mejorValorados" value="Mejor valorados" />
+                <input type="submit" name="menorValorados" value="Menos valorados" />
+            </form>
             <div class="container px-4 px-lg-5 mt-5">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     <?php 
                     foreach($productosElectronica as $productoElectronica) : ?>
-                    <div class="col mb-5">
+                    <div class="col mb-5" onclick="detalleProducto(<?=$productoElectronica['id']?>)">
                         <div class="card h-100">
                             
                             <!-- Product image-->

@@ -1,7 +1,3 @@
-<?php
-    $producto = $_SESSION['camposProducto'];
-
-?>
 <html>
 <head>
     <style>
@@ -245,13 +241,16 @@ footer {
 <div class="wrapper">
   <form class="login" action="<?=$_SERVER['PHP_SELF']?>" method="POST" enctype="multipart/form-data">
     <p class="title">Eliminar un producto</p>
-    <input type="text" name="nombreProducto"  autofocus required value="<?= $producto['nombre']; ?>" readonly /><br><br>
+    <input type="hidden" name="idProductoDelete" value="<?=$aux['id']?>">
+    <input type="text" name="nombreProducto"  autofocus required value="<?=$aux['nombre']; ?>" readonly /><br><br>
     <i class="fa fa-user"></i>
-    <input type="number" step="0.01" name="precioProducto" placeholder="Precio" required value="<?= $producto['precio']; ?>" readonly /><br><br>
+    <input type="number" step="0.01" name="precioProducto" placeholder="Precio" required value="<?= $aux['precio']; ?>" readonly /><br><br>
     <i class="fa fa-user"></i>
-    <input type="number" name="puntuacionProducto" placeholder="Puntuación" required value="<?= $producto['puntuacion']; ?>" readonly/><br><br>
+    <input type="number" name="puntuacionProducto" placeholder="Puntuación" required value="<?= $aux['puntuacion']; ?>" readonly/><br><br>
     <i class="fa fa-user"></i>
-    <input type="text"  name="categoriaProducto" placeholder="Categoría" required value="<?= $producto['categoria']; ?>" readonly /><br><br>
+    <input type="text"  name="categoriaProducto" placeholder="Categoría" required value="<?= $aux['categoria']; ?>" readonly /><br><br>
+    <i class="fa fa-user"></i>
+    <input type="text"  name="categoriaProducto" placeholder="Categoría" required value="<?= $aux['descripcion']; ?>" readonly /><br><br>
     <i class="fa fa-user"></i><br>
     <button name="eliminarProducto" type="submit" >
       <i class="spinner"></i>

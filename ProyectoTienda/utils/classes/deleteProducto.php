@@ -4,16 +4,38 @@
     try{
         $connection = Connection::make();
         session_start();
-        $idProducto = $_POST["idProducto"];
-        $sql2 = "SELECT * from productos where id = '$idProducto'";
-        
-        $pdoStatement = $connection->prepare($sql2);
-    
-        if($pdoStatement->execute() == false){ 
-            $mensaje = "No se ha podido acceder a la BBDD";
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $idProducto = $_POST['idProducto'];
+            if(isset($_POST['eliminarProducto'])){
+                $idProductoAEliminar = $_POST['idProductoDelete'];
+                $sql = "DELETE from productos where id = '$idProductoAEliminar'";
+            
+                $pdoStatement = $connection->prepare($sql);
+            
+                if($pdoStatement->execute() == false){ 
+                    $mensaje = "No se ha podido acceder a la BBDD";
+                }else{
+                    $eliminarProducto = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
+                    header('Location: ../../utils/classes/panelAdministrador.php');
+                }
+            }else if(isset($_POST['deleteProducto'])){
+                $sql2 = "SELECT * from productos where id = '$idProducto'";
+                $aux = [];
+            
+                $pdoStatement = $connection->prepare($sql2);
+            
+                if($pdoStatement->execute() == false){ 
+                    $mensaje = "No se ha podido acceder a la BBDD";
+                }else{
+                    $productoQueSeEliminara = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
+                    $aux = $productoQueSeEliminara[0];
+                }
+            }else{
+                echo "Ha ocurrido un problema con la bbdd, no se ha podido eliminar el producto";
+            }
         }else{
-            $actualizarProducto = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
-            $_SESSION['camposProducto'] = $actualizarProducto[0];
+            echo "Ha ocurrido un problema con la bbdd, no se ha podido cargar el producto";
         }
     }catch(Exception $ex){
         print $ex->getMessage();

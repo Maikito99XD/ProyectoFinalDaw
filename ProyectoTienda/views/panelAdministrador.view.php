@@ -81,8 +81,8 @@
                                 <td><input type="text" id="idProducto<?=$producto['id']?>" name="idProducto" value="<?=$producto['id']?>" class="center-input" readonly></td>
                                 <td><img style="width: 100% !important" src="data:image/jpg;base64,<?= base64_encode($producto['img']);?>" /></td> 
                                 <td class="center-input"><?=$producto['nombre']?></td>
-                                <td class="center-input"><?=$producto['puntuacion']?></td>
                                 <td class="center-input"><?=$producto['precio']?>€</td>
+                                <td class="center-input"><?=$producto['puntuacion']?></td>
                                 <td class="center-input"><?=$producto['categoria']?></td>
                                 <td>
                                     <form method="post" action="../../utils/classes/actualizarProducto.php">
