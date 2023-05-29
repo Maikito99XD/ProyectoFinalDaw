@@ -11,6 +11,11 @@ function detalleProducto(id) {
     window.location.href = "../../utils/classes/producto.php?id=" + id;
 }
 
+function detalleProductoIndex(id) {
+    window.location.href = "/daw/ProyectoTienda/utils/classes/producto.php?id=" + id;
+}
+
+
 // window.post = function(url, data) {
 //     console.log("hola");
 //     return fetch("../../utils/classes/producto.php", {method: "POST", headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)});

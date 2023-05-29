@@ -19,8 +19,9 @@
         }
         $produc = $productoMostrar[0];
         $categoriaProducto = $produc['categoria'];
-        $sql2 = "SELECT * from productos where 'id' != $id_producto and 'categoria' = $categoriaProducto";
-        $pdoStatement2 = $connection->prepare($sql);
+        //$sql2 = "SELECT * from productos where 'id' != $id_producto and 'categoria' = $categoriaProducto";
+        $sql2 = "SELECT * from productos where id <> $id_producto and categoria = '$categoriaProducto'";
+        $pdoStatement2 = $connection->prepare($sql2);
 
         if($pdoStatement2->execute() == false){
             $mensaje = "No se ha podido acceder a la BBDD";

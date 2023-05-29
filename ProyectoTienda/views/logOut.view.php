@@ -188,7 +188,7 @@ footer {
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="Mike" />
-<title>La tienda de Paco</title>
+<title>TodoJavea</title>
 
 <div class="wrapper">
   <form class="login" action="<?=$_SERVER['PHP_SELF']?>" method="POST" enctype="multipart/form-data">
@@ -202,7 +202,7 @@ footer {
       <span class="state">No</span>
     </button>
   </form>
-  <footer><a href="../../index.php">La tienda de paco</a></footer>
+  <footer><a href="../../index.php">TodoJavea</a></footer>
   </p>
 </div>
 </body>

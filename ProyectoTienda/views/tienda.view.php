@@ -27,7 +27,7 @@
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.php">Inicio</a></li>
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="utils/classes/about.php">About</a></li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categorías</a>
+                            <a class="nav-link dropdown-toggle active" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categorías</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="utils/classes/todosLosProductos.php">Todos los productos</a></li>
                                 <li><hr class="dropdown-divider" /></li>
@@ -40,7 +40,7 @@
                     <form class="d-flex">
                         <button class="btn btn-outline-dark" type="submit">
                             <i class="bi-cart-fill me-1"></i>
-                            Cart
+                            Carrito
                             <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
                         </button>
                     </form>
@@ -75,7 +75,7 @@
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     <?php 
                     foreach($productos as $producto) : ?>
-                    <div class="col mb-5" >
+                    <div class="col mb-5" onclick="detalleProductoIndex(<?=$producto['id']?>)">
                         <div class="card h-100">
                             
                             <!-- Product image-->
@@ -100,9 +100,9 @@
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                 <div class="text-center">
-                                    <form action="" method="post">
+                                    <form action="/daw/ProyectoTienda/utils/classes/carritoCookie.php" method="post">
                                         <input type="hidden" name="idProducto" value="<?=$producto['id']?>">
-                                        <input type="submit" class="btn btn-outline-dark mt-auto" value="Añadir al carro" />
+                                        <input type="submit" name="anyadeProducto" class="btn btn-outline-dark mt-auto" value="Añadir al carro" />
                                     </form>
                                 </div>
                             </div>

@@ -7,7 +7,7 @@
     <meta name="author" content="Mike" />
     <title>TodoJavea</title>
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="../../assets/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="../../assets/todoJaveaIcono.png" />
     <!-- Bootstrap icons-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -59,61 +59,52 @@
         <!-- Header-->
         <header class="bg-dark py-5">
             <div class="container px-4 px-lg-5 my-5">
-                <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">Todos nuestros productos</h1>
-                </div>
+                
             </div>
         </header>
         <!-- Section-->
         <section class="py-5">
-            <form action="../../utils/classes/todosLosProductos.php" method="POST" style="text-align: center;">
-                <label><h4 class="fw-bolder mb-4">Ordenar por: </h4></label>
-                <input type="submit" name="mayorMenor" value="Precio de mayor a menor" />
-                <input type="submit" name="menorMayor" value="Precio de menor a mayor" />
-                <input type="submit" name="mejorValorados" value="Mejor valorados" />
-                <input type="submit" name="menorValorados" value="Menos valorados" />
-            </form>
             <div class="container px-4 px-lg-5 mt-5">
-                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                    <?php 
-                    foreach($productos as $producto) : ?>
-                    <div class="col mb-5" onclick="detalleProducto(<?=$producto['id']?>)">
-                        <div class="card h-100">
-                            
-                            <!-- Product image-->
-                            <img src="data:image/jpg;base64,<?= base64_encode($producto['img']);?>" /> 
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder"><?=$producto['nombre']?></h5>
-                                    <!-- Product reviews-->
-                                    <div class="d-flex justify-content-center small text-warning mb-2">
-                                    <?php 
-                                    for($i = 0;$i<$producto['puntuacion'];$i++){
-                                        echo "<div class='bi-star-fill'></div>";
-                                    }
-                                    ?>
-                                    </div>
-                                    <!-- Product price-->
-                                    <?=$producto['precio']?>€
-            
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Añadir al carro</a></div>
-                            </div>
-                            
-                        </div>
-                    </div>
-                    <?php endforeach; ?>
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <table style="border: 1px solid">
+                        <tr id="panelAdminTrBorder">
+                            <!-- <td class="center-input">Imagen</td> -->
+                            <td class="center-input">Nombre</td>
+                            <td class="center-input">Precio</td>
+                            <td class="center-input">Puntuacion</td>
+                            <td class="center-input">Categoría</td>
+                        </tr>
+                        <?php foreach(json_decode(stripslashes($_COOKIE["carrito"] ?? "[]"), true) as $productos) : ?>
+                            <tr>
+                                <td class="center-input"><?=$productos['nombre']?></td>
+                                <td class="center-input"><?=$productos['precio']?>€</td>
+                                <td class="center-input"><?=$productos['puntuacion']?></td>
+                                <td class="center-input"><?=$productos['categoria']?></td>
+                                <td>
+                                    <form method="post" action="../../utils/classes/carritoCookie.php">
+                                        <input type="hidden" name="idProducto" value="<?=$productos['id']?>">
+                                        <input type="submit" name="deleteProducto" value="Eliminar">
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </table>
                 </div>
+                <?php if($_SESSION['usuario'] !== "") : ?>
+                <form action="../../utils/classes/compraFinalizada.php" method="POST">
+                    <input type="submit" style="float: right; margin-top: 15px; margin-bottom: 15px" name="finalizarCompra" value="Finalizar compra" /> 
+                </form>
+                <?php endif; ?>
+                <?php if($_SESSION['usuario'] == "") : ?>
+                <form action="../../utils/classes/login.php" method="POST">
+                    <input type="submit" style="float: right; margin-top: 15px; margin-bottom: 15px" name="finalizarCompra" value="Finalizar compra" /> 
+                </form>
+                <?php endif; ?>
             </div>
         </section>
         <!-- Footer-->
         <footer class="py-5 bg-dark">
-            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Proyecto Mike Steel Marín 2022</p></div>
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Proyecto TodoJavea Mike Steel Marín 2022-2023</p></div>
         </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

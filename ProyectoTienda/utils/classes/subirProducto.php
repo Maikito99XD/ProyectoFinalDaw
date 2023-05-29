@@ -54,24 +54,6 @@
                     $image = $_FILES['imagen']['tmp_name'];
                     $imagen = addslashes(file_get_contents($image));
 
-                    /*
-                    $sql = "INSERT INTO productos(nombre,precio,puntuacion,categoria,img) 
-                    VALUES(:nombre,:precio,:puntuacion,:categoria,:img)";
-                    $pdoStatement = $connection->prepare($sql);
-                    $parameters = [':nombre' => $nombre,
-                        ':precio' => $precio,
-                        ':puntuacion' => $puntuacion,
-                        ':categoria' => $categoria,
-                        ':img' => $imagen];
-                    
-                    if($pdoStatement->execute($parameters) == false){
-                        
-                        $mensaje = "No se ha podido acceder a la BBDD";
-                    }else{
-                        $productos = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
-                    }
-                    */
-
                     $insert = $connection->query("iNSERT INTO productos(nombre,precio,puntuacion,categoria,img,descripcion) VALUES('$nombre','$precio','$puntuacion','$categoria','$imagen','$descripcion')");
 
                     if($insert){
