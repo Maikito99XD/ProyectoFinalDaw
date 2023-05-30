@@ -63,35 +63,6 @@
                 <h2 style="text-align: center; color: #ffffff">El código de su pedido es: <?= generateRandomString(20)?></h2>
             </div>
         </header>
-        <!-- Section-->
-        <section class="py-5">
-            <div class="container px-4 px-lg-5 mt-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <table style="border: 1px solid">
-                        <tr id="panelAdminTrBorder">
-                            <td class="center-input">Nombre</td>
-                            <td class="center-input">Precio</td>
-                            <td class="center-input">Puntuacion</td>
-                            <td class="center-input">Categoría</td>
-                        </tr>
-                        <?php foreach(json_decode(stripslashes($_COOKIE["carrito"] ?? "[]"), true) as $productos) : ?>
-                            <tr>
-                                <td class="center-input"><?=$productos['nombre']?></td>
-                                <td class="center-input"><?=$productos['precio']?>€</td>
-                                <td class="center-input"><?=$productos['puntuacion']?></td>
-                                <td class="center-input"><?=$productos['categoria']?></td>
-                                <td>
-                                    <form method="post" action="../../utils/classes/carrito.php">
-                                        <input type="hidden" name="idProducto" value="<?=$productos['id']?>">
-                                        <input type="submit" name="deleteProducto" value="Eliminar">
-                                    </form>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?> 
-                    </table>
-                </div>
-            </div>
-        </section>
         <!-- Footer-->
         <footer class="py-5 bg-dark">
             <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Proyecto TodoJavea Mike Steel Marín 2022-2023</p></div>

@@ -9,11 +9,19 @@ $arrayMensaje = [];
 $productos = [];
 
 
+function returnCartCount() {
+    echo count(json_decode(stripslashes($_COOKIE["carrito"] ?? "[]"), true));
+}
+
 try{
     session_start();
 
     if(!isset($_SESSION['usuario'])){
         $_SESSION['usuario'] = "";
+    }
+
+    if(!isset($_COOKIE['carrito'])){
+        setcookie("carrito", "[]", time()+86400, "/");
     }
 
     $connection = Connection::make();

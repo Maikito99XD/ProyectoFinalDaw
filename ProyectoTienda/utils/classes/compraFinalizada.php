@@ -10,7 +10,11 @@
         }
         return $randomString;
     }
-    setcookie("carrito", "", time() - 3600, "/");
+    if (isset($_COOKIE['carrito'])) {
+        unset($_COOKIE['carrito']); 
+    } 
+    setcookie('carrito', null, time()-100000, "/"); 
+    //setcookie("carrito", "[]", time() - 86400);
 
     include('../../views/compraFinalizada.view.php');
 ?>

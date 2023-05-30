@@ -15,6 +15,20 @@ function detalleProductoIndex(id) {
     window.location.href = "/daw/ProyectoTienda/utils/classes/producto.php?id=" + id;
 }
 
+function carritoCookie(){
+    window.location.href = "/daw/ProyectoTienda/utils/classes/carritoCookie.php";
+}
+
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+    return [];
+  }
+
+function getCookieCount(name) {
+    return getCookie(name).length;
+}
 
 // window.post = function(url, data) {
 //     console.log("hola");

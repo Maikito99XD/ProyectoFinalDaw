@@ -6,8 +6,7 @@ try{
     session_start();
     if(!isset($_COOKIE["carrito"]) || empty($_COOKIE["carrito"])){
         $productosCarrito = [];
-        setcookie("carrito", json_encode($productosCarrito), time()+86400);
-        
+        setcookie("carrito", json_encode($productosCarrito), time()+86400, "/");
     }
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST'){
@@ -15,7 +14,7 @@ try{
             $carrito = json_decode(stripslashes($_COOKIE["carrito"] ?? "[]"), true);
             
             if (is_array($carrito) && !empty($carrito)) {
-                $idProducto = $_POST['indice']; // ID del producto a eliminar
+                $idProducto = $_POST['idProducto']; // ID del producto a eliminar
                 $indice = -1; // Índice del producto en el array
                 
                 // Buscar el índice del producto en el array
@@ -28,8 +27,8 @@ try{
                 
                 if ($indice !== -1) {
                     unset($carrito[$indice]);
-                    $carrito = array_values($carrito); // Reindexar el array después de eliminar el producto
-                    setcookie("carrito", json_encode($carrito), time() + 86400);
+                    $carritoValues = array_values($carrito); // Reindexar el array después de eliminar el producto
+                    setcookie("carrito", json_encode($carritoValues), time() + 86400, "/");
                 }
             }
         }else if(isset($_POST['anyadeProducto'])){
@@ -48,7 +47,7 @@ try{
                 }
                 
                 array_push($data, $producto);
-                setcookie("carrito", json_encode($data), time()+86400);
+                setcookie("carrito", json_encode($data), time()+86400, "/");
             }
         }
     }

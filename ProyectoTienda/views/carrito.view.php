@@ -37,8 +37,8 @@
                     <form class="d-flex">
                         <button class="btn btn-outline-dark" type="submit">
                             <i class="bi-cart-fill me-1"></i>
-                            Cart
-                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                            Carrito
+                            <span id="idCarritoCount" class="badge bg-dark text-white ms-1 rounded-pill"><?= returnCartCount(); ?></span>
                         </button>
                     </form>
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
