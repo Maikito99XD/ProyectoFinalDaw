@@ -190,7 +190,7 @@ footer {
     <meta name="author" content="Mike" />
     <title></title>
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="../../assets/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="../../assets/todoJaveaIcono.png" />
     <!-- Bootstrap icons-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -216,11 +216,11 @@ footer {
                         </li>
                         <li class="nav-item"><a <?php if (isset($_SESSION['usuario']) && $_SESSION['usuario'] == "admin"): echo 'style= "visibility: visible"'; else : echo 'style= "visibility: hidden"'?><?php endif?> class="nav-link active" aria-current="page"href="../../utils/classes/panelAdministrador.php">Panel administrador</a></li>
                     </ul>
-                    <form class="d-flex">
+                    <form class="d-flex" action="/daw/ProyectoTienda/utils/classes/carritoCookie.php">
                         <button class="btn btn-outline-dark" type="submit">
                             <i class="bi-cart-fill me-1"></i>
-                            Cart
-                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                            Carrito
+                            <span class="badge bg-dark text-white ms-1 rounded-pill"><?= returnCartCount(); ?></span>
                         </button>
                     </form>
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">

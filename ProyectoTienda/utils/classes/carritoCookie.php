@@ -6,7 +6,7 @@ try{
     session_start();
     if(!isset($_COOKIE["carrito"]) || empty($_COOKIE["carrito"])){
         $productosCarrito = [];
-        setcookie("carrito", json_encode($productosCarrito), time()+86400, "/");
+        setcookie("carrito", json_encode($productosCarrito, JSON_UNESCAPED_UNICODE), time()+86400, "/");
     }
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST'){
@@ -15,21 +15,16 @@ try{
             
             if (is_array($carrito) && !empty($carrito)) {
                 $idProducto = $_POST['idProducto']; // ID del producto a eliminar
-                $indice = -1; // Índice del producto en el array
-                
-                // Buscar el índice del producto en el array
+                // Buscar y eliminar el producto específico
                 foreach ($carrito as $index => $producto) {
                     if ($producto['id'] === $idProducto) {
-                        $indice = $index;
+                        unset($carrito[$index]);
                         break;
                     }
                 }
                 
-                if ($indice !== -1) {
-                    unset($carrito[$indice]);
-                    $carritoValues = array_values($carrito); // Reindexar el array después de eliminar el producto
-                    setcookie("carrito", json_encode($carritoValues), time() + 86400, "/");
-                }
+                $carritoValues = array_values($carrito); // Reindexar el array después de eliminar el producto
+                setcookie("carrito", json_encode($carritoValues, JSON_UNESCAPED_UNICODE), time() + 86400, "/");
             }
         }else if(isset($_POST['anyadeProducto'])){
             $aux = $_POST['idProducto'];
@@ -47,7 +42,7 @@ try{
                 }
                 
                 array_push($data, $producto);
-                setcookie("carrito", json_encode($data), time()+86400, "/");
+                setcookie("carrito", json_encode($data, JSON_UNESCAPED_UNICODE), time()+86400, "/");
             }
         }
     }

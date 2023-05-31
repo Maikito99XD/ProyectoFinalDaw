@@ -79,7 +79,7 @@
                         <div class="card h-100">
                             
                             <!-- Product image-->
-                            <img src="data:image/jpg;base64,<?= base64_encode($producto['img']);?>" /> 
+                            <img src="data:image/jpg;base64,<?= base64_encode($producto['img']);?>" height="200" /> 
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">

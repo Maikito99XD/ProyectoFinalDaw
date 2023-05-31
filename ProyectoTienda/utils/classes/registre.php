@@ -5,6 +5,13 @@
     $password = "";
     $permisos = "usuario";
     
+    function returnCartCount() {
+        if(isset($_COOKIE["carrito"])){
+            echo count(json_decode(stripslashes($_COOKIE["carrito"] ?? "[]"), true));
+        }else{
+            echo 0;
+        }
+    }
 try{
     $connection = Connection::make();
     if ($_SERVER['REQUEST_METHOD'] === 'POST'){

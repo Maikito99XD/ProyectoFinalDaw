@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -74,7 +74,7 @@
                             <td class="center-input">Puntuacion</td>
                             <td class="center-input">Categoría</td>
                         </tr>
-                        <?php foreach(json_decode(stripslashes($_COOKIE["carrito"] ?? "[]"), true) as $productos) : ?>
+                        <?php foreach(json_decode(stripslashes($_COOKIE["carrito"] ?? "[]"), true, 512, JSON_UNESCAPED_UNICODE) as $productos) : ?>
                             <tr>
                                 <td class="center-input"><?=$productos['nombre']?></td>
                                 <td class="center-input"><?=$productos['precio']?>€</td>

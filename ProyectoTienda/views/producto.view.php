@@ -37,11 +37,11 @@
                         </li>
                         <li class="nav-item"><a <?php if (isset($_SESSION['usuario']) && $_SESSION['usuario'] == "admin"): echo 'style= "visibility: visible"'; else : echo 'style= "visibility: hidden"'?><?php endif?> class="nav-link active" aria-current="page"href="../../utils/classes/panelAdministrador.php">Panel administrador</a></li>
                     </ul>
-                    <form class="d-flex">
+                    <form class="d-flex" action="/daw/ProyectoTienda/utils/classes/carritoCookie.php">
                         <button class="btn btn-outline-dark" type="submit">
                             <i class="bi-cart-fill me-1"></i>
-                            Cart
-                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                            Carrito
+                            <span class="badge bg-dark text-white ms-1 rounded-pill"><?= returnCartCount(); ?></span>
                         </button>
                     </form>
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
@@ -74,10 +74,10 @@
                             <p class="lead"><?=$producto['descripcion']?></p>
                             <div class="d-flex">
                                 <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
-                                <button class="btn btn-outline-dark flex-shrink-0" type="button">
-                                    <i class="bi-cart-fill me-1"></i>
-                                    Add to cart
-                                </button>
+                                <form action="/daw/ProyectoTienda/utils/classes/carritoCookie.php" method="post">
+                                    <input type="hidden" name="idProducto" value="<?=$producto['id']?>">
+                                    <input type="submit" name="anyadeProducto" class="btn btn-outline-dark mt-auto" value="Añadir al carro" />
+                                </form>
                             </div>
                         </div>
                     <?php endforeach; ?>
@@ -93,7 +93,7 @@
                         <div class="col mb-5">
                             <div class="card h-100">
                                 <!-- Product image-->
-                                <img src="data:image/jpg;base64,<?= base64_encode($productoPorCategoria['img']);?>"/>
+                                <img src="data:image/jpg;base64,<?= base64_encode($productoPorCategoria['img']);?>" height="200"/>
                                 <!-- Product details-->
                                 <div class="card-body p-4">
                                     <div class="text-center">
@@ -105,7 +105,13 @@
                                 </div>
                                 <!-- Product actions-->
                                 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Añadir al carrito</a></div>
+                                    <div class="text-center">
+                                        <form action="/daw/ProyectoTienda/utils/classes/carritoCookie.php" method="post">
+                                            <input type="hidden" name="idProducto" value="<?=$productoPorCategoria['id']?>">
+                                            <input type="submit" name="anyadeProducto" class="btn btn-outline-dark mt-auto" value="Añadir al carro" />
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     <?php endforeach; ?>

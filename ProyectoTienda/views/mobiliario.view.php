@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="Mike" />
-    <title>La tienda de Paco</title>
+    <title>TodoJavea</title>
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="../../assets/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="../../assets/todoJaveaIcono.png" />
     <!-- Bootstrap icons-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -34,11 +34,11 @@
                         </li>
                         <li class="nav-item"><a <?php if (isset($_SESSION['usuario']) && $_SESSION['usuario'] == "admin"): echo 'style= "visibility: visible"'; else : echo 'style= "visibility: hidden"'?><?php endif?> class="nav-link active" aria-current="page"href="../../utils/classes/panelAdministrador.php">Panel administrador</a></li>
                     </ul>
-                    <form class="d-flex">
+                    <form class="d-flex" action="/daw/ProyectoTienda/utils/classes/carritoCookie.php">
                         <button class="btn btn-outline-dark" type="submit">
                             <i class="bi-cart-fill me-1"></i>
-                            Cart
-                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                            Carrito
+                            <span class="badge bg-dark text-white ms-1 rounded-pill"><?= returnCartCount(); ?></span>
                         </button>
                     </form>
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
@@ -81,7 +81,7 @@
                         <div class="card h-100">
                             
                             <!-- Product image-->
-                            <img src="data:image/jpg;base64,<?= base64_encode($productoMobiliario['img']);?>" /> 
+                            <img src="data:image/jpg;base64,<?= base64_encode($productoMobiliario['img']);?>" height="200"/> 
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">
@@ -101,7 +101,12 @@
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Añadir al carro</a></div>
+                                <div class="text-center">
+                                    <form action="/daw/ProyectoTienda/utils/classes/carritoCookie.php" method="post">
+                                        <input type="hidden" name="idProducto" value="<?=$productoMobiliario['id']?>">
+                                        <input type="submit" name="anyadeProducto" class="btn btn-outline-dark mt-auto" value="Añadir al carro" />
+                                    </form>
+                                </div>
                             </div>
                             
                         </div>
